@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Player_Movement_Controller : MonoBehaviour
 {
-    private Player_Input playerInputAction;
+    //private Player_Input playerInputAction;
+    [SerializeField] private Player_Input_Controller playerInputController;
     private CharacterController characterController;
     [SerializeField] private Animator characterAnimator;
     private Transform characterTransform;
@@ -35,12 +36,11 @@ public class Player_Movement_Controller : MonoBehaviour
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
 
-        playerInputAction = new Player_Input();
-        playerInputAction.Character.Move.started += ReadMovementInput;
-        playerInputAction.Character.Move.canceled += ReadMovementInput;
-        playerInputAction.Character.Move.performed += ReadMovementInput;
-        playerInputAction.Character.Run.started += ReadRunButton;
-        playerInputAction.Character.Run.canceled += ReadRunButton;
+        playerInputController.playerInputAction.Character.Move.started += ReadMovementInput;
+        playerInputController.playerInputAction.Character.Move.canceled += ReadMovementInput;
+        playerInputController.playerInputAction.Character.Move.performed += ReadMovementInput;
+        playerInputController.playerInputAction.Character.Run.started += ReadRunButton;
+        playerInputController.playerInputAction.Character.Run.canceled += ReadRunButton;
     }
 
     private void ReadMovementInput(InputAction.CallbackContext context)
@@ -59,12 +59,12 @@ public class Player_Movement_Controller : MonoBehaviour
 
     private void OnEnable() 
     {
-        playerInputAction.Character.Enable();
+        playerInputController.playerInputAction.Character.Enable();
     }
 
     private void OnDisable() 
     {
-        playerInputAction.Character.Disable();
+        playerInputController.playerInputAction.Character.Disable();
     }
 
     // Update is called once per frame

@@ -44,7 +44,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -148,9 +148,10 @@ GameObject:
   - component: {fileID: 1731023243718807553}
   - component: {fileID: 2372295205913172017}
   - component: {fileID: 3081312895091636693}
+  - component: {fileID: 6508950914892915720}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,13 +192,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.4
+  m_Height: 1.8
+  m_Radius: 0.3
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.5
+  m_SkinWidth: 0.03
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &3081312895091636693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,12 +211,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e06be0d214c2d5479eeaa6be190bf09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputController: {fileID: 6508950914892915720}
   characterAnimator: {fileID: 5114925380651511146}
   walkSpeed: 2
   runMultiplier: 2
   rotationFactorPerFrame: 15
   gravity: 9.8
   terminalVelocity: 100
+--- !u!114 &6508950914892915720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933405237844960873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08670a067981c249b8da5d6b0c3f7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8789337283147344582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -274,16 +288,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1734124589672409125, guid: 60770bdb4dc667c45bea53db0339dc05,
+        type: 3}
+      propertyPath: playerInputController
+      value: 
+      objectReference: {fileID: 6508950914892915720}
     - target: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05,
         type: 3}
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
-    - target: {fileID: 4540229000190281644, guid: 60770bdb4dc667c45bea53db0339dc05,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 232d41989265b4b40aa44c96c0999132, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
