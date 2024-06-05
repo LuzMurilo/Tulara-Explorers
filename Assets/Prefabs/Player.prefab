@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputController: {fileID: 6508950914892915720}
   characterAnimator: {fileID: 5114925380651511146}
-  walkSpeed: 2
+  walkSpeed: 3
   runMultiplier: 2
   rotationFactorPerFrame: 15
   gravity: 9.8

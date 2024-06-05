@@ -26,6 +26,8 @@ public class Player_Movement_Controller : MonoBehaviour
     [SerializeField] private float gravity = 9.8f;
     [SerializeField] private float terminalVelocity = 100.0f;
 
+    public bool isGrounded;
+
 
     private void Awake() 
     {
@@ -35,7 +37,9 @@ public class Player_Movement_Controller : MonoBehaviour
 
         isWalkingHash = Animator.StringToHash("isWalking");
         isRunningHash = Animator.StringToHash("isRunning");
-
+    }
+    private void Start() 
+    {
         playerInputController.playerInputAction.Character.Move.started += ReadMovementInput;
         playerInputController.playerInputAction.Character.Move.canceled += ReadMovementInput;
         playerInputController.playerInputAction.Character.Move.performed += ReadMovementInput;
@@ -46,7 +50,8 @@ public class Player_Movement_Controller : MonoBehaviour
     private void ReadMovementInput(InputAction.CallbackContext context)
     {
         currentMovementInput = context.ReadValue<Vector2>();
-        isMovementPressed = (currentMovementInput.magnitude != 0.0f);
+        isMovementPressed = currentMovementInput.magnitude != 0.0f;
+
         currentMovement.x = currentMovementInput.x * walkSpeed;
         currentMovement.z = currentMovementInput.y * walkSpeed;
         currentRunMovement = new Vector3(currentMovement.x * runMultiplier, currentMovement.y, currentMovement.z * runMultiplier);
@@ -82,6 +87,8 @@ public class Player_Movement_Controller : MonoBehaviour
         {
             characterController.Move(currentRunMovement * Time.deltaTime);
         }
+
+        isGrounded = characterController.isGrounded;
     }
 
     private void UpdateAnimation()
@@ -121,9 +128,9 @@ public class Player_Movement_Controller : MonoBehaviour
 
     private void UpdateGravity()
     {
-        if (characterController.isGrounded)
+        if (isGrounded)
         {
-            float groundedGravity = -0.05f;
+            float groundedGravity = -1.0f;
             currentMovement.y = groundedGravity;
             currentRunMovement.y = groundedGravity;
         }

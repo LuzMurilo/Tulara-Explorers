@@ -12,7 +12,9 @@ public class Player_Interact : MonoBehaviour
     private void Awake()
     {
         interactables = new List<Interactable>();
-        playerInputController.playerInputAction = new Player_Input();
+    }
+    private void Start() 
+    {
         playerInputController.playerInputAction.Character.Interact.started += ReadInteractButton;
     }
 
